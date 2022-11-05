@@ -15,4 +15,7 @@ public class EmpleadoService {
     public ArrayList<EmpleadoEntity> obtenerEmpleados(){
         return (ArrayList<EmpleadoEntity>) empleadoRepository.findAll();
     }
+    public EmpleadoEntity findByRut(String rut_dado){
+        return empleadoRepository.findByRut(rut_dado);
+    }
 }

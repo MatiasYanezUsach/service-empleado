@@ -3,6 +3,7 @@ package proyecto.mingeso.microserviceempleado.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import proyecto.mingeso.microserviceempleado.entities.EmpleadoEntity;
@@ -25,6 +26,16 @@ public class EmpleadoController {
         }
         else {
             return ResponseEntity.ok(empleados);
+        }
+    }
+    @GetMapping("/byRut/{rut_dado}")
+    public ResponseEntity<EmpleadoEntity> obtenerEmpleado(@PathVariable("rut_dado") String rut_dado) {
+        EmpleadoEntity empleado = empleadoService.findByRut(rut_dado);
+        if(empleado == null){
+            return ResponseEntity.notFound().build();
+        }
+        else{
+            return ResponseEntity.ok(empleado);
         }
     }
 }
