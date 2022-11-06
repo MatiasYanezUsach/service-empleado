@@ -4,9 +4,9 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8090
+      uri: http://localhost:8081
   datasource:
-    url: jdbc:mysql://localhost:3306/bdtemp
+    url: jdbc:mysql://localhost:3306/empleados
     username: root
     password: Chile&2022
   jpa:
