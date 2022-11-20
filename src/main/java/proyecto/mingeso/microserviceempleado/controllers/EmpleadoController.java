@@ -22,7 +22,7 @@ public class EmpleadoController {
     public ResponseEntity<ArrayList<EmpleadoEntity>> obtenerEmpleados() {
         ArrayList<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         if(empleados.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(empleados);
         }
         else {
             return ResponseEntity.ok(empleados);
@@ -32,7 +32,7 @@ public class EmpleadoController {
     public ResponseEntity<EmpleadoEntity> obtenerEmpleado(@PathVariable("rut_dado") String rut_dado) {
         EmpleadoEntity empleado = empleadoService.findByRut(rut_dado);
         if(empleado == null){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(empleado);
         }
         else{
             return ResponseEntity.ok(empleado);
