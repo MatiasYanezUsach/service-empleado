@@ -4,17 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyecto.mingeso.microserviceempleado.entities.EmpleadoEntity;
+import proyecto.mingeso.microserviceempleado.repositories.EmpleadoRepository;
 import proyecto.mingeso.microserviceempleado.services.EmpleadoService;
 
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/empleado")
-@CrossOrigin(origins = "*")
 public class EmpleadoController {
 
     @Autowired
     EmpleadoService empleadoService;
+
+    @Autowired
+    EmpleadoRepository empleadoRepository;
 
     @GetMapping
     public ResponseEntity<ArrayList<EmpleadoEntity>> obtenerEmpleados() {
@@ -35,5 +38,10 @@ public class EmpleadoController {
         else{
             return ResponseEntity.ok(empleado);
         }
+    }
+    @PostMapping("/subir")
+    public ResponseEntity<EmpleadoEntity> subirEmpleado(@RequestBody EmpleadoEntity empleado) {
+        EmpleadoEntity empleadoFinal = empleadoRepository.save(empleado);
+        return ResponseEntity.ok(empleadoFinal);
     }
 }
